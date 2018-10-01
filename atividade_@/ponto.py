@@ -23,9 +23,11 @@ class Ponto():
         elif self.x == 0 and self.y == 0:
             return "Origem"
 
+# uso da classe
 ponto1 = Ponto()
 ponto1.x = 0
 ponto1.y = 0
 ponto1.mover(-0, -1)
 resultado = ponto1.quadrante()
-print(resultado)    
+print(resultado)
+    
