@@ -1,0 +1,2 @@
+class SO():
+    pass
