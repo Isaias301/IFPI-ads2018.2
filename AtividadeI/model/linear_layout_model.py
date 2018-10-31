@@ -1,4 +1,7 @@
-class LinearLayout():
+from view_group_model import ViewGroup
+
+
+class LinearLayout(ViewGroup):
     tipo = None
 
 
