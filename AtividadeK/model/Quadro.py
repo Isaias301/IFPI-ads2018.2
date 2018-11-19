@@ -50,4 +50,11 @@ class Quadro:
         db["quadro"].append(self)
 
 
+    def listas_quadro(self):
+        listas = []
+        for quadro_lista in db["quadro_lista"]:
+            if quadro_lista["quadro"].get_id() == self.get_id():
+                listas.append(quadro_lista["lista"])
+        return listas
+
     
