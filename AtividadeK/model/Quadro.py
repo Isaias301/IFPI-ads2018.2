@@ -76,3 +76,10 @@ class Quadro:
         db["quadro_lista_cartao"].append({"quadro": self, "lista": lista_quadro, "cartao": cartao})
 
     
+    def comentar_cartao(self, lista, cartao, texto_comentario):
+        comentario = Comentario(texto_comentario)
+        db["quadro_lista_cartao_comentario"].append({"quadro": self, "lista": lista, "cartao": cartao, "comentario": comentario})
+
+
+    def alterar_data_entrega(self, cartao, data):
+        pass
