@@ -64,4 +64,15 @@ class Quadro:
             if cartao["quadro"].get_id() == quadro:
                 cartoes.append(cartao["cartao"])
         return cartoes
+
+
+    def adicionar_cartao(self, titulo, lista):
+        cartao = Cartao(titulo)
+        lista_quadro = None
+        for lista_encontrada in db["quadro_lista"]:
+            if lista_encontrada["lista"].get_id() == lista:
+                lista_quadro = lista_encontrada["lista"]
+
+        db["quadro_lista_cartao"].append({"quadro": self, "lista": lista_quadro, "cartao": cartao})
+
     
