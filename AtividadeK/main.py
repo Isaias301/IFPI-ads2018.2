@@ -22,6 +22,7 @@ def main():
                '2 - Arquivar\n' \
                '3 - Alterar data de entrega\n' \
                '4 - Adicionar Etiqueta\n' \
+               '5 - Mover cartao\n' \
                '0 - Voltar\n'
     
     while True:
@@ -82,6 +83,15 @@ def main():
                             cartao = opcao_cartao()
                             cor = input("Digite a cor da etiqueta: ")
                             quadro.adicionar_etiqueta(cor, cartao)
+
+                        elif opcao1 == 5:
+                            cartao = opcao_cartao()
+                            listas = quadro.listas_quadro()
+                            for lista in listas:
+                                print("******Escolha uma lista do Quadro {}******\n{} - {}\n").format(quadro.get_titulo(), lista.get_id(), lista.get_titulo())
+
+                            opcao_lista = input("Lista: ")
+                            quadro.mover_cartao(opcao_lista, cartao)
 
                         elif opcao1 == 0:
                             break

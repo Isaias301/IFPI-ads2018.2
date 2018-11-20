@@ -113,3 +113,11 @@ class Quadro:
         data = {"mensagem": "Etiqueta adicionada ao cartao {}.".format(cartao)}
         log = Log(data)
         log.salvar()
+
+
+    def mover_cartao(self, lista, cartao):
+        print(lista)
+        print(cartao)
+        # for i in db["quadro_lista"]:
+        #     if i[""] == 
+        
