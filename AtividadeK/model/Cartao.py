@@ -1,5 +1,6 @@
 from db import db
 import random
+from model.Comentario import Comentario
 
 
 class Cartao:
@@ -55,13 +56,3 @@ class Cartao:
     
     def salvar_cartao(self):
         self.__set_id()
-        db["cartao"].append(self)
-        self.log("criando cartao")
-
-
-    def comentario(self, comentario):
-        pass
-
-
-    def log(self, log):
-        db["log_cartao"].append({"id_cartao": self.get_id, "log": log})

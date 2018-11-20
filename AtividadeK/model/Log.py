@@ -7,8 +7,8 @@ class Log:
     __log = None
 
 
-    def __init__(self):
-        pass
+    def __init__(self, log):
+        self.__set_log(log)
 
 
     def get_id(self):
@@ -27,5 +27,5 @@ class Log:
         self.log = log
 
 
-    def salvar(self, log):
-        db["log"].append(log)
+    def salvar(self):
+        db["log"].append(self.get_log())

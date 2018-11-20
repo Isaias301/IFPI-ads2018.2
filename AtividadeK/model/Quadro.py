@@ -2,7 +2,7 @@ from db import db
 import random
 from model.Lista import Lista
 from model.Cartao import Cartao
-from model.Comentario import Comentario
+from model.Log import Log
 
 
 class Quadro:
@@ -45,10 +45,16 @@ class Quadro:
         lista = Lista(nome)
         lista.salvar_lista()
         db["quadro_lista"].append({"quadro": self, "lista": lista})
+        data = {"mensagem": "Novo quadro criado e adicionado no quadro {}".format(self.get_titulo())}
+        log = Log(data)
+        log.salvar()
 
 
     def salvar_quadro(self):
         db["quadro"].append(self)
+        data = {"mensagem": "Quadro {} criado".format(self.get_titulo())}
+        log = Log(data)
+        log.salvar()
 
 
     def listas_quadro(self):
@@ -75,16 +81,24 @@ class Quadro:
         for lista_encontrada in db["quadro_lista"]:
             if lista_encontrada["lista"].get_id() == lista:
                 lista_quadro = lista_encontrada["lista"]
-
         db["quadro_lista_cartao"].append({"quadro": self, "lista": lista_quadro, "cartao": cartao})
+        data = {"mensagem": "Cartao adicionado na lista".format(lista_quadro)}
+        log = Log(data)
+        log.salvar()
 
     
     def comentar_cartao(self, lista, cartao, texto_comentario):
         comentario = Comentario(texto_comentario)
         db["quadro_lista_cartao_comentario"].append({"quadro": self, "lista": lista, "cartao": cartao, "comentario": comentario})
+        data = {"mensagem": "Cartao {} comentado".format(texto_comentario)}
+        log = Log(data)
+        log.salvar()
 
 
     def alterar_data_entrega(self, id_cartao, data):
         for cartao in db["cartao"]:
             if cartao.get_id() == cartao:
                 cartao.alterar_data_entrega(data)
+        data = {"mensagem": "Data do cartao {} alterada.".format(id_cartao)}
+        log = Log(data)
+        log.salvar()

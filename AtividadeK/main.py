@@ -9,6 +9,7 @@ import os
 def main():
     menu = '***** Trello *****\n' \
                '1 - Criar Quadro\n' \
+               '2 - Logs\n' \
                '0 - Sair\n'
     
     menu2 = '***** Trello *****\n' \
@@ -81,6 +82,8 @@ def main():
 
                 elif opcao == 0:
                     break
+        elif opcao == 2:
+            print(db["log"])
 
         elif opcao == 0:
             break
