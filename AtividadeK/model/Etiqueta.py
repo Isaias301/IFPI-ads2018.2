@@ -1,5 +1,6 @@
 from db import db
 import random
+from model.Log import Log
 
 
 class Etiqueta:
@@ -9,8 +10,8 @@ class Etiqueta:
 
 
     def __init__(self, cor):
+        self.__set_id()
         self.set_cor(cor)
-        self.savar()
 
 
     def get_id(self):
@@ -37,9 +38,12 @@ class Etiqueta:
         self.cor = cor
 
 
-    def savar(self):
+    def salvar(self):
         self.__set_id()
         db["etiqueta"] = self
+        data = {"mensagem": "Etiqueta {} adicionada ao cartao.".format(self.get_cor())}
+        log = Log(data)
+        log.salvar()
 
 
     def excluir(self):

@@ -3,6 +3,8 @@ import random
 from model.Lista import Lista
 from model.Cartao import Cartao
 from model.Log import Log
+from model.Etiqueta import Etiqueta
+from model.Comentario import Comentario
 
 
 class Quadro:
@@ -100,5 +102,14 @@ class Quadro:
             if cartao.get_id() == cartao:
                 cartao.alterar_data_entrega(data)
         data = {"mensagem": "Data do cartao {} alterada.".format(id_cartao)}
+        log = Log(data)
+        log.salvar()
+
+    
+    def adicionar_etiqueta(self, cor, cartao):
+        etiqueta = Etiqueta(cor)
+        etiqueta.salvar()
+        db["quadro_lista_cartao_etiqueta"].append({"quadro": self, "cartao": cartao, "etiqueta": etiqueta})
+        data = {"mensagem": "Etiqueta adicionada ao cartao {}.".format(cartao)}
         log = Log(data)
         log.salvar()

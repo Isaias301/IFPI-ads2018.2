@@ -21,6 +21,7 @@ def main():
                '1 - Comentar\n' \
                '2 - Arquivar\n' \
                '3 - Alterar data de entrega\n' \
+               '4 - Adicionar Etiqueta\n' \
                '0 - Voltar\n'
     
     while True:
@@ -76,6 +77,11 @@ def main():
                             data = input("Data: ")
                             quadro.alterar_data_entrega(cartao, data)
                             # print(db)
+
+                        elif opcao1 == 4:
+                            cartao = opcao_cartao()
+                            cor = input("Digite a cor da etiqueta: ")
+                            quadro.adicionar_etiqueta(cor, cartao)
 
                         elif opcao1 == 0:
                             break
