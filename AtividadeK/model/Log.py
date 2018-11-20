@@ -1,4 +1,5 @@
 import random
+from db import db
 
 
 class Log:
@@ -20,3 +21,11 @@ class Log:
 
     def __set_id(self):
         self.id = random.randint(1,100)
+
+
+    def __set_log(self, log):
+        self.log = log
+
+
+    def salvar(self, log):
+        db["log"].append(log)

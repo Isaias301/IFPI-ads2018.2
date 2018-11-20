@@ -3,7 +3,7 @@ db = {
     "quadro": [],
     "lista": [],
     "comentario": [],
-    "log_cartao": [],
+    "log": [],
     "etiqueta": [],
     
     "quadro_lista": [],
