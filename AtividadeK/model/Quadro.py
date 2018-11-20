@@ -12,6 +12,7 @@ class Quadro:
 
 
     def __init__(self, titulo):
+        self.__set_id()
         self.set_titulo = titulo
         self.salvar_quadro()
 
@@ -42,11 +43,11 @@ class Quadro:
     
     def adicionar_lista(self, nome):
         lista = Lista(nome)
+        lista.salvar_lista()
         db["quadro_lista"].append({"quadro": self, "lista": lista})
 
 
     def salvar_quadro(self):
-        self.__set_id()
         db["quadro"].append(self)
 
 
@@ -68,6 +69,8 @@ class Quadro:
 
     def adicionar_cartao(self, titulo, lista):
         cartao = Cartao(titulo)
+        cartao.salvar_cartao()
+
         lista_quadro = None
         for lista_encontrada in db["quadro_lista"]:
             if lista_encontrada["lista"].get_id() == lista:
@@ -81,5 +84,7 @@ class Quadro:
         db["quadro_lista_cartao_comentario"].append({"quadro": self, "lista": lista, "cartao": cartao, "comentario": comentario})
 
 
-    def alterar_data_entrega(self, cartao, data):
-        pass
+    def alterar_data_entrega(self, id_cartao, data):
+        for cartao in db["cartao"]:
+            if cartao.get_id() == cartao:
+                cartao.alterar_data_entrega(data)

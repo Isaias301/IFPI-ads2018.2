@@ -14,13 +14,13 @@ def main():
     menu2 = '***** Trello *****\n' \
                '1 - Criar Lista\n' \
                '2 - Adicionar Cartao\n' \
-               '0 - Sair\n'
+               '0 - Voltar\n'
 
     menu3 = '***** Trello *****\n' \
                '1 - Comentar\n' \
                '2 - Arquivar\n' \
                '3 - Alterar data de entrega\n' \
-               '0 - Sair\n'
+               '0 - Voltar\n'
     
     while True:
         opcao = int(input(menu))
@@ -53,7 +53,7 @@ def main():
                     quadro.adicionar_cartao(titulo_cartao, opcao_lista)
                                                             
                     while True:
-                        os.system('clear')
+                        # os.system('clear')
                         opcao1 = input(menu3)
 
                         def opcao_cartao():
@@ -73,7 +73,7 @@ def main():
                         elif opcao1 == 3:
                             cartao = opcao_cartao()
                             data = input("Data: ")
-                            # quadro.alterar_data_entrega(cartao, data)
+                            quadro.alterar_data_entrega(cartao, data)
                             # print(db)
 
                         elif opcao1 == 0:
