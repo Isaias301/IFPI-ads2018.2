@@ -9,7 +9,6 @@ import os
 def main():
     menu = '***** Trello *****\n' \
                '1 - Criar Quadro\n' \
-               '2 - Logs\n' \
                '0 - Sair\n'
     
     menu2 = '***** Trello *****\n' \
@@ -23,6 +22,7 @@ def main():
                '3 - Alterar data de entrega\n' \
                '4 - Adicionar Etiqueta\n' \
                '5 - Mover cartao\n' \
+               '6 - Logs\n' \
                '0 - Voltar\n'
     
     while True:
@@ -46,9 +46,10 @@ def main():
                 elif opcao == 2:
                     listas = quadro.listas_quadro()
                     os.system('clear')
+                    print("******Escolha uma lista******")
                     for lista in listas:
-                        print("******Escolha uma lista do Quadro {}******\n{} - {}\n").format(quadro.get_titulo(), lista.get_id(), lista.get_titulo())
-                    
+                        print("{} - {}".format(lista.get_id(), lista.get_titulo()))
+
                     opcao_lista = input("Opcao: ")
                     os.system('clear')
                     titulo_cartao = input("Titulo do cartao: ")
@@ -72,12 +73,17 @@ def main():
                             cartao = opcao_cartao()
                             comentario = input("Comentario: ")
                             quadro.comentar_cartao(teste, cartao, comentario)
-                        
+
+
+                        elif opcao1 == 2:
+                            cartao = opcao_cartao()
+                            quadro.arquivar_cartao(cartao)
+
+
                         elif opcao1 == 3:
                             cartao = opcao_cartao()
                             data = input("Data: ")
                             quadro.alterar_data_entrega(cartao, data)
-                            # print(db)
 
                         elif opcao1 == 4:
                             cartao = opcao_cartao()
@@ -87,19 +93,22 @@ def main():
                         elif opcao1 == 5:
                             cartao = opcao_cartao()
                             listas = quadro.listas_quadro()
+                            print("******Escolha uma lista******")
                             for lista in listas:
-                                print("******Escolha uma lista do Quadro {}******\n{} - {}\n").format(quadro.get_titulo(), lista.get_id(), lista.get_titulo())
-
+                                print("{} - {}".format(lista.get_id(), lista.get_titulo()))
                             opcao_lista = input("Lista: ")
                             quadro.mover_cartao(opcao_lista, cartao)
+
+                        elif opcao1 == 6:
+                            cartao = opcao_cartao()
+                            logs = quadro.log_cartao(cartao)
+                            print(logs)
 
                         elif opcao1 == 0:
                             break
 
                 elif opcao == 0:
                     break
-        elif opcao == 2:
-            print(db["log"])
 
         elif opcao == 0:
             break

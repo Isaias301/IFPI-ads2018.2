@@ -51,3 +51,4 @@ class Lista:
     def salvar_lista(self):
         self.__set_id()
         db["lista"].append(self)
+        

@@ -47,17 +47,11 @@ class Quadro:
         lista = Lista(nome)
         lista.salvar_lista()
         db["quadro_lista"].append({"quadro": self, "lista": lista})
-        data = {"mensagem": "Novo quadro criado e adicionado no quadro {}".format(self.get_titulo())}
-        log = Log(data)
-        log.salvar()
-
+        
 
     def salvar_quadro(self):
         db["quadro"].append(self)
-        data = {"mensagem": "Quadro {} criado".format(self.get_titulo())}
-        log = Log(data)
-        log.salvar()
-
+        
 
     def listas_quadro(self):
         listas = []
@@ -84,15 +78,15 @@ class Quadro:
             if lista_encontrada["lista"].get_id() == lista:
                 lista_quadro = lista_encontrada["lista"]
         db["quadro_lista_cartao"].append({"quadro": self, "lista": lista_quadro, "cartao": cartao})
-        data = {"mensagem": "Cartao adicionado na lista".format(lista_quadro)}
+        data = {"mensagem": "Cartao adicionado a lista {}".format(self.get_titulo(), lista_quadro.get_titulo())}
         log = Log(data)
         log.salvar()
-
     
+
     def comentar_cartao(self, lista, cartao, texto_comentario):
         comentario = Comentario(texto_comentario)
         db["quadro_lista_cartao_comentario"].append({"quadro": self, "lista": lista, "cartao": cartao, "comentario": comentario})
-        data = {"mensagem": "Cartao {} comentado".format(texto_comentario)}
+        data = {"mensagem": "Cartao {} comentado".format(cartao)}
         log = Log(data)
         log.salvar()
 
@@ -116,8 +110,20 @@ class Quadro:
 
 
     def mover_cartao(self, lista, cartao):
-        print(lista)
-        print(cartao)
-        # for i in db["quadro_lista"]:
-        #     if i[""] == 
+        # print(lista)
+        # print(cartao)
+        # for i in db["quadro_lista_cartao_comentario"]:
+        #     if i["cartao"].get_id() == cartao:
+        #         db["quadro_lista_cartao_comentario"].remove()
+        pass
         
+
+    def arquivar_cartao(self, cartao):
+        for cartao in db["cartao"]:
+            if cartao.get_id() == cartao:
+                cartao.set_arquivar()
+    
+
+    def log_cartao(self, cartao):
+        return db["log"]
+
