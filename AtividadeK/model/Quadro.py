@@ -119,11 +119,14 @@ class Quadro:
         
 
     def arquivar_cartao(self, cartao):
+        a = None
         for cartao in db["cartao"]:
             if cartao.get_id() == cartao:
                 cartao.set_arquivar()
+                a = cartao
+        print(a)
     
 
     def log_cartao(self, cartao):
-        return db["log"]
+        return db["log"] 
 
